@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App - UAS Pemrograman Website II</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-header">
+                    <h4><i class="bi bi-check2-square"></i> To-Do List</h4>
+                    <p class="text-muted small">UAS Pemrograman Website II</p>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-filter="all">
+                            <i class="bi bi-list-ul"></i> Semua Tugas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-filter="pending">
+                            <i class="bi bi-clock"></i> Belum Selesai
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-filter="completed">
+                            <i class="bi bi-check-circle"></i> Selesai
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-filter="today">
+                            <i class="bi bi-calendar-check"></i> Deadline Hari Ini
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <div class="header">
+                    <h2>Daftar Tugas Saya</h2>
+                    <p class="text-muted">Kelola tugas Anda dengan mudah menggunakan REST API</p>
+                </div>
+
+                <!-- Add Task Form -->
+                <div class="card add-task-card">
+                    <div class="card-body">
+                        <form id="addTaskForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="taskTitle" 
+                                           placeholder="Masukkan tugas baru..." required>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" id="taskDeadline" 
+                                           placeholder="Deadline (opsional)">
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="submit" class="btn btn-primary w-100">
+                                        <i class="bi bi-plus-circle"></i> Tambah Tugas
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="stat-card stat-total">
+                            <div class="stat-icon"><i class="bi bi-list-ul"></i></div>
+                            <div class="stat-info">
+                                <h3 id="totalTasks">0</h3>
+                                <p>Total Tugas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-card stat-pending">
+                            <div class="stat-icon"><i class="bi bi-clock"></i></div>
+                            <div class="stat-info">
+                                <h3 id="pendingTasks">0</h3>
+                                <p>Belum Selesai</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-card stat-completed">
+                            <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                            <div class="stat-info">
+                                <h3 id="completedTasks">0</h3>
+                                <p>Selesai</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks List -->
+                <div class="card tasks-card">
+                    <div class="card-body">
+                        <div id="tasksList" class="tasks-list">
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2 text-muted">Memuat data...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Tugas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTaskForm">
+                        <input type="hidden" id="editTaskId">
+                        <div class="mb-3">
+                            <label for="editTaskTitle" class="form-label">Judul Tugas</label>
+                            <input type="text" class="form-control" id="editTaskTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTaskDeadline" class="form-label">Deadline</label>
+                            <input type="date" class="form-control" id="editTaskDeadline">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveEditBtn">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

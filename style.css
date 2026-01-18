@@ -1,0 +1,336 @@
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --dark-color: #1f2937;
+    --light-color: #f9fafb;
+    --border-color: #e5e7eb;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    background: white;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.sidebar-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.sidebar-header h4 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar .nav-link {
+    color: var(--dark-color);
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background: var(--light-color);
+    color: var(--primary-color);
+}
+
+.sidebar .nav-link.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.sidebar .nav-link i {
+    margin-right: 0.5rem;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 2rem;
+    left: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    background: var(--light-color);
+    border-radius: 8px;
+}
+
+/* Main Content */
+.main-content {
+    padding: 2rem;
+}
+
+.header {
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.header h2 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Add Task Card */
+.add-task-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.add-task-card .form-control {
+    border-radius: 8px;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+}
+
+.add-task-card .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+}
+
+.add-task-card .btn-primary {
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: var(--primary-color);
+    border: none;
+    font-weight: 600;
+}
+
+.add-task-card .btn-primary:hover {
+    background: var(--secondary-color);
+}
+
+/* Statistics Cards */
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.stat-total .stat-icon {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+}
+
+.stat-pending .stat-icon {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+}
+
+.stat-completed .stat-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.stat-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.stat-info p {
+    margin-bottom: 0;
+    color: #6b7280;
+}
+
+/* Tasks Card */
+.tasks-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tasks-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.task-item {
+    background: var(--light-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--primary-color);
+}
+
+.task-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transform: translateX(5px);
+}
+
+.task-item.completed {
+    border-left-color: var(--success-color);
+    opacity: 0.7;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.task-checkbox {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.task-title {
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+}
+
+.btn-edit:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-delete {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+}
+
+.btn-delete:hover {
+    background: var(--danger-color);
+    color: white;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+/* Scrollbar */
+.tasks-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tasks-list::-webkit-scrollbar-track {
+    background: var(--light-color);
+    border-radius: 10px;
+}
+
+.tasks-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        padding: 1rem;
+    }
+    
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+    
+    .sidebar-footer {
+        position: relative;
+        bottom: auto;
+        margin-top: 2rem;
+    }
+}
+
+/* Deadline styling */
+.task-item.deadline-today {
+    border-left-color: var(--warning-color);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+.task-item.overdue {
+    border-left-color: var(--danger-color);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+}
